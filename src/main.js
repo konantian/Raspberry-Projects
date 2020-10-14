@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import './main.css';
 
 class Main extends React.Component{
 
@@ -25,10 +26,17 @@ class Main extends React.Component{
     render(){
         return (
             <div>
-                <p>
-                    {this.state.temperature}
-                    {this.state.humidity}
-                </p>
+                <ul>
+                    <li>
+                        <span id='txt'></span>
+                    </li>
+                    <li>
+                        <span id='temp'>{this.state.temperature}</span>
+                    </li>
+                    <li>
+                        <span id='hum'>{this.state.humidity}</span>
+                    </li>
+                </ul>
             </div>
         )
     }
