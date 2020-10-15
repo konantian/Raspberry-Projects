@@ -3,6 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { FaClock, FaThermometerHalf, FaTint } from 'react-icons/fa';
 import './main.css';
+import {TEM_API} from './utils/api';
 
 class Main extends React.Component{
 
@@ -25,7 +26,7 @@ class Main extends React.Component{
     }
 
     fetchData = () => {
-        axios.get("http://myraspberrypi.work:5000/api/gettmp").then((res) => {
+        axios.get(TEM_API).then((res) => {
             this.setState(({
                 temperature: `${res.data[0]}°C`,
                 humidity: `${res.data[1]}%`
