@@ -7,8 +7,8 @@ import './main.css';
 class Main extends React.Component{
 
     state = {
-        temperature : "",
-        humidity : "",
+        temperature : "Measuring...",
+        humidity : "Measuring...",
         currentTime : moment().format('HH:mm:ss')
     }
 
