@@ -9,14 +9,14 @@ class Main extends React.Component{
     state = {
         temperature : "",
         humidity : "",
-        currentTime : moment().format('h:mm:ss')
+        currentTime : moment().format('HH:mm:ss')
     }
 
     componentDidMount(){
         this.fetchData();
         setInterval(() => {
             this.setState({
-              currentTime : moment().format('h:mm:ss')
+              currentTime : moment().format('HH:mm:ss')
             })
           }, 1000)
         setInterval(() => {
@@ -25,7 +25,7 @@ class Main extends React.Component{
     }
 
     fetchData = () => {
-        axios.get("http://192.168.0.111:3000/api/gettmp").then((res) => {
+        axios.get("http://139.59.226.134:5000/api/gettmp").then((res) => {
             this.setState(({
                 temperature: `${res.data[0]}°C`,
                 humidity: `${res.data[1]}%`
