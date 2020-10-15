@@ -25,7 +25,7 @@ class Main extends React.Component{
     }
 
     fetchData = () => {
-        axios.get("http://139.59.226.134:5000/api/gettmp").then((res) => {
+        axios.get("http://myraspberrypi.work:5000/api/gettmp").then((res) => {
             this.setState(({
                 temperature: `${res.data[0]}°C`,
                 humidity: `${res.data[1]}%`
