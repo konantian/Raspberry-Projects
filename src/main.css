@@ -4,24 +4,37 @@ body {
     color: #fff;
   }
   
-  ul {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%); /* IE 9 */
-    -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */	  
-    vertical-align: middle;
-    list-style:none;
-    align-self: center;
-  }
+ul {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); /* IE 9 */
+  -webkit-transform: translate(-50%, -50%); /* Chrome, Safari, Opera */	  
+  vertical-align: middle;
+  list-style:none;
+  align-self: center;
+}
 
-  li {
-    text-align:left;  
-    white-space: nowrap;
-  }
-  span {
-    font-size: 12em;
-    font-weight:bold;
-    font-family: 'Lucida Sans';
-  }
+li {
+  text-align:left;  
+  white-space: nowrap;
+}
+span {
+  font-size: 12em;
+  font-weight:bold;
+  font-family: 'Lucida Sans';
+  margin-left: 5%;
+}
+
+.clock{
+  font-size: 8em;
+}
+
+.rmometer{
+  font-size: 8em;
+}
+
+.tint{
+  font-size: 8em;
+}

@@ -1,25 +1,35 @@
 import React from 'react';
 import axios from 'axios';
+import moment from 'moment';
+import { FaClock, FaThermometerHalf, FaTint } from 'react-icons/fa';
 import './main.css';
 
 class Main extends React.Component{
 
     state = {
-        temperature : 0,
-        humidity : 0
+        temperature : "",
+        humidity : "",
+        currentTime : moment().format('h:mm:ss')
     }
 
     componentDidMount(){
-        this.fetchData()
+        this.fetchData();
+        setInterval(() => {
+            this.setState({
+              currentTime : moment().format('h:mm:ss')
+            })
+          }, 1000)
+        setInterval(() => {
+            this.fetchData();
+        }, 5000)
     }
 
     fetchData = () => {
         axios.get("http://192.168.0.111:3000/api/gettmp").then((res) => {
             this.setState(({
-                temperature: res.data[0],
-                humidity: res.data[1]
+                temperature: `${res.data[0]}°C`,
+                humidity: `${res.data[1]}%`
             }))
-            console.log(res.data);
         })
     }
 
@@ -28,13 +38,13 @@ class Main extends React.Component{
             <div>
                 <ul>
                     <li>
-                        <span id='txt'></span>
+                        <FaClock className="clock"/><span id='time'>{this.state.currentTime}</span>
                     </li>
                     <li>
-                        <span id='temp'>{this.state.temperature}</span>
+                        <FaThermometerHalf className="rmometer"/><span id='temperature'>{this.state.temperature}</span>
                     </li>
                     <li>
-                        <span id='hum'>{this.state.humidity}</span>
+                        <FaTint className="tint"/><span id='humidity'>{this.state.humidity}</span>
                     </li>
                 </ul>
             </div>
