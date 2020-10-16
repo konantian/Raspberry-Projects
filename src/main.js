@@ -10,6 +10,7 @@ class Main extends React.Component{
     state = {
         temperature : "Measuring...",
         humidity : "Measuring...",
+        isLoading : true,
         currentTime : moment().format('HH:mm:ss')
     }
 
@@ -20,16 +21,14 @@ class Main extends React.Component{
               currentTime : moment().format('HH:mm:ss')
             })
           }, 1000)
-        setInterval(() => {
-            this.fetchData();
-        }, 5000)
     }
 
     fetchData = () => {
         axios.get(TEM_API).then((res) => {
             this.setState(({
                 temperature: `${res.data[0]}°C`,
-                humidity: `${res.data[1]}%`
+                humidity: `${res.data[1]}%`,
+                isLoading : false
             }))
         })
     }
