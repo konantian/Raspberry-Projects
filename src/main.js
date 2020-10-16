@@ -10,7 +10,6 @@ class Main extends React.Component{
     state = {
         temperature : "Measuring...",
         humidity : "Measuring...",
-        isLoading : true,
         currentTime : moment().format('HH:mm:ss')
     }
 
@@ -28,7 +27,6 @@ class Main extends React.Component{
             this.setState(({
                 temperature: `${res.data[0]}°C`,
                 humidity: `${res.data[1]}%`,
-                isLoading : false
             }))
         })
     }
