@@ -10,8 +10,10 @@ sensor = Adafruit_DHT.DHT22
 pin = 4
 
 @app.route('/api/gettmp',methods=["GET"])
-def draw_stone():
+def get_temp_humi():
     humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
+    while humidity is None or temperature is None:
+        humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
     humidity = round(humidity,2)
     temperature = round(temperature,2)
     data = [temperature,humidity]
