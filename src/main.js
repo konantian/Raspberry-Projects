@@ -20,7 +20,7 @@ function Main() {
         setInterval(() => {
             setTime(moment().format('HH:mm:ss'));
           }, 1000)
-    })
+    }, [])
 
     function fetchData(){
         axios.get(TEM_API).then((res) => {

@@ -1,9 +1,11 @@
 from flask import Flask, Response
 import Adafruit_DHT
+from flask_cors import CORS
 from time import sleep
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 # Adafruit_DHT.DHT22 sensor
 sensor = Adafruit_DHT.DHT22
@@ -20,7 +22,6 @@ def get_temp_humi():
     temperature = round(temperature,2)
     data = [temperature,humidity]
     resp = Response(json.dumps(data),  mimetype='application/json')
-    resp.headers['Access-Control-Allow-Origin'] = 'http://raspberrypi.design'
     return resp
 
 if __name__ == '__main__':
