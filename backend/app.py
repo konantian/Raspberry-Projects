@@ -1,5 +1,6 @@
 from flask import Flask, Response
 import Adafruit_DHT
+from time import sleep
 import json
 
 app = Flask(__name__)
@@ -13,6 +14,7 @@ pin = 4
 def get_temp_humi():
     humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
     while humidity is None or temperature is None:
+        sleep(2) #DHT22 can only be read for every 2 seconds
         humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
     humidity = round(humidity,2)
     temperature = round(temperature,2)
