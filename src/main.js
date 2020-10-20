@@ -1,53 +1,49 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import { FaClock, FaThermometerHalf, FaTint } from 'react-icons/fa';
 import './main.css';
 import {TEM_API} from './utils/api';
+import {useSelector, useDispatch} from 'react-redux';
+import {increment} from './actions';
 
-class Main extends React.Component{
+function Main() {
 
-    state = {
-        temperature : "Measuring...",
-        humidity : "Measuring...",
-        currentTime : moment().format('HH:mm:ss')
-    }
+    const [temperature, setTemperature] = useState("Measuring...");
+    const [humidity, setHumidity] = useState("Measuring...");
+    const [time, setTime] = useState(moment().format('HH:mm:ss'));
+    const counter = useSelector(state => state.counter);
+    const dispatch  = useDispatch();
 
-    componentDidMount(){
-        this.fetchData();
+    useEffect(() => {
+        fetchData();
         setInterval(() => {
-            this.setState({
-              currentTime : moment().format('HH:mm:ss')
-            })
+            setTime(moment().format('HH:mm:ss'));
           }, 1000)
-    }
+    })
 
-    fetchData = () => {
+    function fetchData(){
         axios.get(TEM_API).then((res) => {
-            this.setState(({
-                temperature: `${res.data[0]}°C`,
-                humidity: `${res.data[1]}%`,
-            }))
+            setTemperature(`${res.data[0]}°C`);
+            setHumidity(`${res.data[1]}%`);
         })
     }
 
-    render(){
-        return (
-            <div>
-                <ul>
-                    <li>
-                        <FaClock className="clock"/><span id='time'>{this.state.currentTime}</span>
-                    </li>
-                    <li>
-                        <FaThermometerHalf className="rmometer"/><span id='temperature'>{this.state.temperature}</span>
-                    </li>
-                    <li>
-                        <FaTint className="tint"/><span id='humidity'>{this.state.humidity}</span>
-                    </li>
-                </ul>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <ul>
+                <li>
+                    <FaClock className="clock"/><span id='time'>{time}</span>
+                </li>
+                <li>
+                    <FaThermometerHalf className="rmometer"/><span id='temperature'>{temperature}</span>
+                </li>
+                <li>
+                    <FaTint className="tint"/><span id='humidity'>{humidity}</span>
+                </li>
+            </ul>
+        </div>
+    )
 }
 
 export default Main;
