@@ -2,7 +2,7 @@
 
 ## About The Project
 
-![preview_img](https://github.com/konantian/Raspberrypi-Projects/blob/master/preview.png)
+![preview_img](https://github.com/konantian/Raspberry-Projects/blob/master/preview.png)
 
 There are many interesting projects in raspberry pi community. This project is designed to demo some raspberry pi projects that finished by myself. This demo project contains both the backedn and the frontend. The backend is running on the raspberry pi and the front end running on a server. We use [fast reverse proxy](https://github.com/fatedier/frp) to communicate between the backend and the frontend. We open one port on the raspberry pi and another port on the remote server, at the same time, we are running frp for client and frp for server separatelly. For each time the server send a request to the raspberry pi through the port, the raspberry pi just send the requested data from this port to another port on the remote server. In this case, we can obtain all the information about the raspberry pi not only in the localhost but also in public network.
 
