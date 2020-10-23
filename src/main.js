@@ -15,19 +15,20 @@ function Main() {
     const counter = useSelector(state => state.counter);
     const dispatch  = useDispatch();
 
-    useEffect(() => {
-        fetchData();
-        setInterval(() => {
-            setTime(moment().format('HH:mm:ss'));
-          }, 1000)
-    }, [])
-
     function fetchData(){
         axios.get(TEM_API).then((res) => {
             setTemperature(`${res.data[0]}°C`);
             setHumidity(`${res.data[1]}%`);
         })
     }
+
+    //works like componentDidMount
+    useEffect(() => {
+        fetchData();
+        setInterval(() => {
+            setTime(moment().format('HH:mm:ss'));
+          }, 1000)
+    }, [])
 
     return (
         <div>
