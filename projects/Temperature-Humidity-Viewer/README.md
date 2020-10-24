@@ -22,13 +22,14 @@ The DHT22 will have three pins(+, -, data) that we need to connect to the raspbe
 ### Software Setup
 > Install the packages to read the data
 ```shell
-$ pip install -r requirements.txt
+$ pip install Adafruit_DHT
 ```
 
 > Read data in python
 ```python3
 import Adafruit_DHT
 sensor = Adafruit_DHT.DHT22
+#4 stands for GPIO4 pin on raspberry pi
 pin = 4
 humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
 ```
