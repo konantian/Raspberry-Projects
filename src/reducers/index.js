@@ -1,8 +1,8 @@
-import counterReducer from './counter';
+import isAuthReducer from './auth';
 import {combineReducers} from 'redux';
 
 const allReducers = combineReducers({
-    counter : counterReducer
+    isAuth : isAuthReducer
 });
 
 export default allReducers;

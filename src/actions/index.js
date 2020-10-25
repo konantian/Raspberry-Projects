@@ -1,5 +1,5 @@
-export const increment = () => {
+export const auth = () => {
     return {
-        type : "INCREMENT"
+        type : "AUTH"
     };
 };
