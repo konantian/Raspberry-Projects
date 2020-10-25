@@ -8,8 +8,6 @@ const { Sider } = Layout;
 
 function ProjectsMenu(props){
 
-    console.log(props.selectedIndex);
-
     const [collapsed, setCollapsed] = useState(false);
 
     return (

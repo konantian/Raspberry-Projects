@@ -23,6 +23,7 @@ function TempAndHumi() {
     //works like componentDidMount
     useEffect(() => {
         fetchData();
+        //update the time every second
         setInterval(() => {
             setTime(moment().format('HH:mm:ss'));
             }, 1000)
