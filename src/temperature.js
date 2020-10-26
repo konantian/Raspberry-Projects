@@ -24,17 +24,18 @@ function TempAndHumi() {
     useEffect(() => {
         fetchData();
         //update the time every second
-        setInterval(() => {
+        let timer = setInterval(() => {
             setTime(moment().format('HH:mm:ss'));
-            }, 1000)
+            }, 1000);
+        return () => {
+            clearInterval(timer);
+        }
     }, [])
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <ProjectsMenu selectedIndex={'2'} />
             <Layout className="site-layout">
-
-            <div className="container">
                 <ul className="dataList">
                     <li className="list">
                         <FaClock className="clock"/><span className = "item" id='time'>{time}</span>
@@ -46,7 +47,6 @@ function TempAndHumi() {
                         <FaTint className="tint"/><span className = "item" id='humidity'>{humidity}</span>
                     </li>
                 </ul>
-            </div>
             </Layout>
         </Layout>
     )

@@ -7,7 +7,7 @@ function Camera(){
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
-            <ProjectsMenu selectedIndex={'1'}/>
+            <ProjectsMenu selectedIndex={'3'}/>
          </Layout>
     )
 }
