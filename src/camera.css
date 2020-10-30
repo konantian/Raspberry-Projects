@@ -1,0 +1,10 @@
+.window{
+    height: 800px;
+    width : 1000px;
+    border : solid #1890ff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}

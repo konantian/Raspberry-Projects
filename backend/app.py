@@ -31,15 +31,12 @@ def get_temp_humi():
 
 @app.route('/api/capture, methods=["GET"])
 def get_capture():
-    camera.start_preview()
-    sleep(5)
     camera.capture('./image.jpg')
-    camera.stop_preview()
+    sleep(5)
     filename = "./image.jpg"
     with open(filename, 'rb') as f:
         im_b64 = base64.b64encode(f.read())
     return jsonify({'image' : im_b64})
-
 
 if __name__ == '__main__':
     app.run('0.0.0.0',port=5000)
