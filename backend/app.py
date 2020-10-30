@@ -32,7 +32,7 @@ def get_temp_humi():
     resp = Response(json.dumps(data),  mimetype='application/json')
     return resp
 
-@app.route('/api/capture, methods=["GET"])
+@app.route('/api/capture', methods=["GET"])
 def get_capture():
     if camera != False:
         camera.capture('./image.jpg')
