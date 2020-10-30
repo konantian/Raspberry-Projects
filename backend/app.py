@@ -15,7 +15,10 @@ sensor = Adafruit_DHT.DHT22
 pin = 4
 
 # camera
-camera = PiCamera()
+try:
+    camera = PiCamera()
+except:
+    camera = False
 
 @app.route('/api/gettmp',methods=["GET"])
 def get_temp_humi():
@@ -31,12 +34,15 @@ def get_temp_humi():
 
 @app.route('/api/capture, methods=["GET"])
 def get_capture():
-    camera.capture('./image.jpg')
-    sleep(5)
-    filename = "./image.jpg"
-    with open(filename, 'rb') as f:
-        im_b64 = base64.b64encode(f.read())
-    return jsonify({'image' : im_b64})
+    if camera != False:
+        camera.capture('./image.jpg')
+        sleep(5)
+        filename = "./image.jpg"
+        with open(filename, 'rb') as f:
+            im_b64 = base64.b64encode(f.read())
+        return jsonify({'image' : im_b64})
+    else:
+        return jsonify({'image' : 'No camera available'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0',port=5000)
