@@ -4,7 +4,18 @@
     border : solid #1890ff;
     border-radius: 10px;
     display: flex;
+    font-size: 18px;
     justify-content: center;
+    flex-direction: column; 
+    align-items: center;
+    margin: auto;
+}
+
+.alert{
+    display: flex;
+    font-size: 18px;
+    justify-content: center;
+    flex-direction: column; 
     align-items: center;
     margin: auto;
 }

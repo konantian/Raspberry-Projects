@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import 'antd/dist/antd.css';
-import {Layout, Spin } from 'antd';
+import {Layout, Spin, Alert, Image } from 'antd';
 import {CAM_API} from './utils/api';
 import './camera.css';
 import ProjectsMenu from './components/ProjectsMenu';
@@ -10,10 +10,16 @@ function Camera(){
 
     const [src, setSrc] = useState();
     const [loading, setLoading] = useState(true);
+    const [isCamera, setCamera] = useState(true);
 
     useEffect(() => {
         axios.get(CAM_API).then((res) => {
-            setSrc(res.data.image);
+            let image = res.data.image;
+            if(image === 'No camera available'){
+                setCamera(false);
+            }else{
+                setSrc(res.data.image);
+            }
             setLoading(false);
         })
     }, [])
@@ -21,8 +27,9 @@ function Camera(){
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <ProjectsMenu selectedIndex={'3'}/>
-            {loading ? <Spin className="window" size="large" /> : 
-                <img className="window" src={`data:image/png;base64, ${src}`} alt="capture" />
+            {loading ? <Spin className="window" size="large" tip={"Waking up the camera, please wait..."} /> : 
+                isCamera ? <Image className="window" height={800} width={1000} src={`data:image/png;base64, ${src}`} alt="capture" /> : 
+                <Alert className="alert" type="warning" message={"Camera is currently not available!"} />
             }
             
          </Layout>
