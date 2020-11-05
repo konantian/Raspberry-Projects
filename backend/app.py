@@ -1,4 +1,3 @@
-from models import Room
 from flask import Flask, Response, send_file, jsonify
 from datetime import date,datetime
 import Adafruit_DHT
@@ -16,6 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 db = SQLAlchemy(app)
 
+from models import Room
 
 # Adafruit_DHT.DHT22 sensor
 sensor = Adafruit_DHT.DHT22
@@ -36,12 +36,10 @@ def get_temp_humi():
         humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
     humidity = round(humidity,2)
     temperature = round(temperature,2)
-    today = date.today()
     now = datetime.now()
     room=Room(
             temperature=temperature,
             humidity=humidity,
-            date=today,
             time=now
             )
     db.session.add(room)
