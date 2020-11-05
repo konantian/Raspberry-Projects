@@ -1,5 +1,6 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 class Room(db.Model):
     __tablename__ = 'room'
 
@@ -18,7 +19,7 @@ class Room(db.Model):
     def __repr__(self):
         return f'<id {self.id}>'
 
-    def selfrialize(self):
+    def serialize(self):
         return {
                 'id' : self.id,
                 'date' : self.date,
