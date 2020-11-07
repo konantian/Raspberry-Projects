@@ -1,7 +1,7 @@
 # Temperature and Humidity Viewer
 
 ## About The Project
-In this project, we use DHT22 sensor to detect the current temperature and humidity indoor. After connectiong the sensor with the raspberry pi, a Python package called "Adafruit_DHT" is used to read the temperature and humidity data from the raspberry pi. 
+In this project, we use DHT22 sensor to detect the current temperature and humidity indoor. After connectiong the sensor with the raspberry pi, a Python package called "Adafruit_DHT" is used to read the temperature and humidity data from the raspberry pi. At the same time, we are using postgreSQL as the database that connected to flask. For each measure, the data will be recorded in the database as well. After there are enough data in the database, we may add a dashboard on the front end to show how the temperate and humidity change in a certain period. To have this dashboard available on the page, we are hoping user can adjust their indoor temperature and humidity to keep health.
 
 ## Prerequisites
 ### Hardware
