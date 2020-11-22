@@ -29,7 +29,7 @@ except:
     camera = False
 
 @app.route('/api/gettmp',methods=["GET"])
-def get_temp_humi():
+def get_temperature():
     humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
     while humidity is None or temperature is None:
         sleep(2) #DHT22 can only be read for every 2 seconds
@@ -44,7 +44,27 @@ def get_temp_humi():
             )
     db.session.add(room)
     db.session.commit()
-    data = [temperature,humidity]
+    data = [temperature]
+    resp = Response(json.dumps(data),  mimetype='application/json')
+    return resp
+
+@app.route('/api/gethum',methods=["GET"])
+def get_humidity():
+    humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
+    while humidity is None or temperature is None:
+        sleep(2) #DHT22 can only be read for every 2 seconds
+        humidity,temperature = Adafruit_DHT.read_retry(sensor, pin)
+    humidity = round(humidity,2)
+    temperature = round(temperature,2)
+    now = datetime.now()
+    room=Room(
+            temperature=temperature,
+            humidity=humidity,
+            time=now
+            )
+    db.session.add(room)
+    db.session.commit()
+    data = [humidity]
     resp = Response(json.dumps(data),  mimetype='application/json')
     return resp
 
