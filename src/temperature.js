@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Layout } from 'antd';
 import { FaClock, FaThermometerHalf, FaTint } from 'react-icons/fa';
 import {TEM_API} from './utils/api';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import './temperature.css';
 import ProjectsMenu from './components/ProjectsMenu';
 
@@ -11,7 +11,7 @@ function TempAndHumi() {
 
     const [temperature, setTemperature] = useState("Measuring...");
     const [humidity, setHumidity] = useState("Measuring...");
-    const [time, setTime] = useState(moment().format('HH:mm:ss'));
+    const [time, setTime] = useState(dayjs().format('HH:mm:ss'));
 
     function fetchData(){
         axios.get(TEM_API).then((res) => {
@@ -25,7 +25,7 @@ function TempAndHumi() {
         fetchData();
         //update the time every second
         let timer = setInterval(() => {
-            setTime(moment().format('HH:mm:ss'));
+            setTime(dayjs().format('HH:mm:ss'));
             }, 1000);
         return () => {
             clearInterval(timer);
