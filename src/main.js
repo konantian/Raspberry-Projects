@@ -5,19 +5,18 @@ import {TEM_API, HUM_API} from './utils/api';
 import dayjs from 'dayjs';
 import './main.css';
 
-function TempAndHumi() {
+const TempAndHumi = () => {
 
     const [temperature, setTemperature] = useState("Measuring...");
     const [humidity, setHumidity] = useState("Measuring...");
     const [time, setTime] = useState(dayjs().format('HH:mm:ss'));
 
-    function fetchData(){
-        axios.get(TEM_API).then((res) => {
-            setTemperature(`${res.data[0]}°C`);
-        });
-        axios.get(HUM_API).then(res => {
-            setHumidity(`${res.data[0]}%`);
-        });
+    const fetchData = async () =>{
+
+        const tempRes = await axios.get(TEM_API);
+        const humRes = await axios.get(HUM_API);
+        setTemperature(`${tempRes.data[0]}°C`);
+        setHumidity(`${humRes.data[0]}%`);
     }
 
     //works like componentDidMount
