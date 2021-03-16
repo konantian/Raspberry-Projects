@@ -10,8 +10,8 @@ There are many interesting projects in raspberry pi community. This project is d
 * [Temperature And Humidity Viewer](./projects/Temperature-Humidity-Viewer/README.md)
 
 ## Built With
-- Frontend : JavaScript and CSS
-- Backend : Flask， PostgreSQL
+- Front End : JavaScript and CSS
+- Back End : Flask， PostgreSQL
 - 3rd Party : React, antd, redux, react-icons, axios, moment, Adafruit_DHT, frp
 
 
